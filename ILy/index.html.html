@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess my cursh's name</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-image: url('C:/Users/abc/Downloads/Gojo/Love Wallpaper Background.jpg'); /* Replace with your image file path */
+      background-size: cover;
+      animation: backgroundAnimation 20s infinite alternate; /* Animation properties */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    }
+
+    @keyframes backgroundAnimation {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.05);
+      }
+    }
+
+    #keyboard {
+      display: grid;
+      grid-template-columns: repeat(14, 1fr); /* Adjust the number of columns as needed */
+      gap: 10px; /* Increased gap for better spacing */
+      max-width: 800px; /* Adjust the max-width as needed */
+      margin: auto; /* Center the keyboard horizontally */
+    }
+
+    .key {
+      padding: 15px; /* Increased padding for larger keys */
+      border: 1px solid #ccc;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .highlight {
+      background-color: pink;
+    }
+
+    #bottomText {
+      margin-top: auto; /* Pushes the text to the bottom */
+      color: white;
+      font-size: 18px;
+    }
+
+    #namePanel {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #nameInput {
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    #congratulationText {
+      color: green;
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    #tryAgainText {
+      color: red;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    #enterButton {
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="keyboard"></div>
+
+<div id="namePanel">
+  <input type="text" id="nameInput" placeholder="Guess her name">
+  <button id="enterButton">Enter</button>
+  <div id="congratulationText"></div>
+  <div id="tryAgainText"></div>
+</div>
+
+<div id="bottomText">Crack it if you can -- BY Shadab</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const keyboardContainer = document.getElementById('keyboard');
+    const nameInput = document.getElementById('nameInput');
+    const enterButton = document.getElementById('enterButton');
+    const congratulationText = document.getElementById('congratulationText');
+    const tryAgainText = document.getElementById('tryAgainText');
+
+    // Generate A to Z keys dynamically
+    for (let i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++) {
+      const letter = String.fromCharCode(i);
+      const keyElement = document.createElement('div');
+      keyElement.classList.add('key');
+      keyElement.textContent = letter;
+      keyboardContainer.appendChild(keyElement);
+
+      // Highlight specified letters in pink
+      if (['B', 'H', 'A', 'G', 'Y', 'S'].includes(letter)) {
+        keyElement.classList.add('highlight');
+      }
+    }
+
+    // Listen for button click
+    enterButton.addEventListener('click', function() {
+      const guessedName = nameInput.value.trim().toUpperCase();
+
+      // Check if the entered name is 'Bhagyasha'
+      if (guessedName === 'BHAGYASHA') {
+        congratulationText.textContent = 'Congrats! You guessed it right!';
+        tryAgainText.textContent = ''; // Reset try again message
+      } else {
+        tryAgainText.textContent = 'Not her, try again!';
+        congratulationText.textContent = ''; // Reset congratulatory message
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
